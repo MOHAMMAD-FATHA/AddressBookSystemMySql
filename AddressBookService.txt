@@ -1,0 +1,107 @@
+//Uc1 Create a data base named AddressBookService
+create database addressbookservice;
+show databases;
++--------------------+
+| Database           |
++--------------------+
+| addressbookservice |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+	
+
+
+//Uc2 Create a table called addressbook in AddressBookService databaase
+create table AddressBook( Firstname varchar(50), Lastname varchar(50), Address varchar(50), City varchar(50), State varchar(50), Zip int, PhoneNumber bigint, Email varchar(50));
+
+
+//Uc3 Inserting values in table
+insert into AddressBook value ('Fatha','Jamkhandi','Friend', 'Hammed Nagar Navbag', 'Vijaypura','Karnataka',431103,9990066589,'mfjkd@gmail.com');
+
+
+select * from AddressBoook;
++-----------+-----------+--------------------+-----------+-----------+--------+-------------+-----------------+
+| Firstname | Lastname  | Address            | City      | State     | Zip    | PhoneNumber | Email           |
++-----------+-----------+--------------------+-----------+-----------+--------+-------------+-----------------+
+| Fatha     | Jamkhandi | Near Secab college | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
++-----------+-----------+--------------------+-----------+-----------+--------+-------------+-----------------+
+
+
+//Uc4 Updating address by first name
+update addressbook set address = 'Hameed Nagar Navbag' where FirstName = 'Fatha';
+
+select* from addressbook;
+
++-----------+-----------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Firstname | Lastname  | Address             | City      | State     | Zip    | PhoneNumber | Email           |
++-----------+-----------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Fatha     | Jamkhandi | Hameed Nagar Navbag | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
++-----------+-----------+---------------------+-----------+-----------+--------+-------------+-----------------+
+
+
+//Uc5 Delete contact from address book by using first name
+delete from AddressBook where Firstname = 'Fatha';
+
+select * from addressbook where state = 'Karnataka' and City = 'Vijaypura'
++-----------+-----------+--------------------+-----------+-----------+--------+-------------+-----------------+
+| Firstname | Lastname  | Address            | City      | State     | Zip    | PhoneNumber | Email           |
++-----------+-----------+--------------------+-----------+-----------+--------+-------------+-----------------+
+| Mohammad  | Jamkhandi | Near Secab college | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
++-----------+-----------+--------------------+-----------+-----------+--------+-------------+-----------------+
+
+
+//Uc6 count of address book by City or State
+select count(City) from addressbook where State = 'Karnataka' and City = 'Vijaypura';
++-------------+
+| count(city) |
++-------------+
+|           1 |
++-------------+
+
+
+//Uc7 Sorting alphabetically address book by first name for given city
+select * from addressbook where City = 'Vijaypura' order by Firstname;
++-----------+-----------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Firstname | Lastname  | Address             | City      | State     | Zip    | PhoneNumber | Email           |
++-----------+-----------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Fatha     | Jamkhandi | Hameed Nagar Navbag | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
+| Mohammad  | Jamkhandi | Near Secab college  | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
++-----------+-----------+---------------------+-----------+-----------+--------+-------------+-----------------+
+
+select * from addressbook;
++-----------+-----------+------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Firstname | Lastname  | type | Address             | City      | State     | Zip    | PhoneNumber | Email           |
++-----------+-----------+------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Mohammad  | Jamkhandi | NULL | Near Secab college  | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
+| Fatha     | Jamkhandi | NULL | Hameed Nagar Navbag | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
++-----------+-----------+------+---------------------+-----------+-----------+--------+-------------+-----------------+
+
+
+//Uc8  Identify each address book with name and type
+update addressbook set type = 'Family' where Firstname = 'Fatha';
+
+
+//Uc9 Ability to get number of contact persons i.e. count by type
+select count(FirstName) from addressbook where type = 'Family' ;
++------------------+
+| count(FirstName) |
++------------------+
+|                1 |
++------------------+
+
+
+//Uc10 Ability to get number of contact persons i.e. count by type
+insert into AddressBook value ('Fatha','Jamkhandi','Friend', 'Hammed Nagar Navbag', 'Vijaypura','Karnataka',431103,9990066589,'mfjkd@gmail.com');
+select * from addressbook;
++-----------+-----------+--------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Firstname | Lastname  | type   | Address             | City      | State     | Zip    | PhoneNumber | Email           |
++-----------+-----------+--------+---------------------+-----------+-----------+--------+-------------+-----------------+
+| Mohammad  | Jamkhandi | Family | Near Secab college  | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
+| Fatha     | Jamkhandi | Family | Hameed Nagar Navbag | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
+| Fatha     | Jamkhandi | Friend | Hammed Nagar Navbag | Vijaypura | Karnataka | 431103 |  9990066589 | mfjkd@gmail.com |
++-----------+-----------+--------+---------------------+-----------+-----------+--------+-------------+-----------------+
+
+
